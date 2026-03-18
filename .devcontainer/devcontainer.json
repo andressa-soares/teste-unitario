@@ -20,7 +20,7 @@
       }
     }
   },
-  "postCreateCommand": "mvn -N wrapper:wrapper -Dmaven=3.9.6 && ./mvnw compile",
+  "postCreateCommand": "chmod +x mvnw && ./mvnw compile",
   "forwardPorts": [],
   "remoteUser": "vscode"
 }

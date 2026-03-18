@@ -169,7 +169,7 @@ Detalhando cada etapa:
 3. Clique em **"Create codespace on main"**.
 4. Aguarde o ambiente ser carregado (2–3 minutos na primeira vez).
 
-> 💡 O Codespace já vem com o **Java 21 (JDK)**, **Maven** e todas as extensões do VS Code pré-configuradas, incluindo o **Test Runner for Java** que habilita o Test Explorer.
+> 💡 O Codespace já vem com o **Java 21 (JDK)** e todas as extensões do VS Code pré-configuradas, incluindo o **Test Runner for Java** que habilita o Test Explorer.
 
 ### Passo 3 — Verificar o ambiente
 
@@ -185,7 +185,7 @@ Deve exibir a versão 21.x. Em seguida, compile o projeto:
 ./mvnw compile
 ```
 
-> 💡 O projeto usa o **Maven Wrapper** (`./mvnw`), que garante a versão correta do Maven. Use `./mvnw` ao invés de `mvn` em todos os comandos.
+> 💡 O projeto versiona o **Maven Wrapper** no próprio repositório (`mvnw`, `mvnw.cmd` e `.mvn/wrapper`). Isso evita depender de uma instalação prévia do Maven no Codespaces. Se o shell informar falta de permissão, execute `chmod +x mvnw` uma vez.
 
 ### Passo 4 — Conhecer o Test Explorer
 
@@ -222,6 +222,8 @@ tdd-junit-java/
 │   └── devcontainer.json              ← Configuração do Codespaces
 ├── .mvn/wrapper/
 │   └── maven-wrapper.properties       ← Configuração do Maven Wrapper
+├── mvnw                               ← Script do Maven Wrapper para Linux/macOS
+├── mvnw.cmd                           ← Script do Maven Wrapper para Windows
 ├── .vscode/
 │   └── extensions.json                ← Extensões recomendadas
 ├── src/
