@@ -153,10 +153,19 @@ class ContaTest {
         assertEquals("Saldo insuficiente para o saque.", exception.getMessage());
     }
 
-    // =======================================================
-    // Testes para sacar
-    // - Saque em conta inativa lança IllegalStateException
-    // =======================================================
+    @Test
+    void sacar_ContaInativa_LancaIllegalStateException() {
+        var conta = new Conta("Maria", 0);
+
+        conta.encerrar();
+
+        assertFalse(conta.isAtiva());
+
+        IllegalStateException exception = assertThrows(
+                IllegalStateException.class, () -> conta.sacar(50));
+
+        assertEquals("A conta está inativa.", exception.getMessage());
+    }
 
     // =======================================================
     // Testes para transferir
