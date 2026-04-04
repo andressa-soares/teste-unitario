@@ -96,7 +96,7 @@ class ContaTest {
             "-20",
             "0"
     })
-    void depositar_ValorNegativoLancaIllegalArgumentException(double valor) {
+    void depositar_ValoresInvalidosLancaIllegalArgumentException(double valor) {
         var conta = new Conta("Maria", 100);
 
         assertThrows(IllegalArgumentException.class, () -> conta.depositar(valor));
