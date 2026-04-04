@@ -137,7 +137,10 @@ class ContaTest {
     void sacar_SaldoInsuficiente_LancaIllegalStateException() {
         var conta = new Conta("Maria", 100);
 
-        assertThrows(IllegalStateException.class, () -> conta.sacar(101));
+        IllegalStateException exception = assertThrows(
+                IllegalStateException.class, () -> conta.sacar(101));
+
+        assertEquals("Saldo insuficiente para o saque.", exception.getMessage());
     }
 
     // =======================================================
