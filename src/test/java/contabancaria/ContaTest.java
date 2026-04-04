@@ -99,7 +99,10 @@ class ContaTest {
     void depositar_ValoresInvalidosLancaIllegalArgumentException(double valor) {
         var conta = new Conta("Maria", 100);
 
-        assertThrows(IllegalArgumentException.class, () -> conta.depositar(valor));
+        IllegalArgumentException exception = assertThrows(
+                IllegalArgumentException.class, () -> conta.depositar(valor));
+
+        assertEquals("O valor deve ser maior que zero.", exception.getMessage());
     }
 
     /**
