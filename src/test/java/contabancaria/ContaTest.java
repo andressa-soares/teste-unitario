@@ -119,7 +119,7 @@ class ContaTest {
         assertEquals(50, conta.getSaldo());
     }
 
-    @Test
+    @ParameterizedTest
     @CsvSource({
             "-20",
             "0"
