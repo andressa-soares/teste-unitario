@@ -127,13 +127,14 @@ class ContaTest {
     void sacar_ValoresInvalidos_LancaIllegalArgumentException(double valor) {
         var conta = new Conta("Maria", 100);
 
-        assertThrows(IllegalArgumentException.class, () -> conta.sacar(valor));
+        IllegalArgumentException exception = assertThrows(
+                IllegalArgumentException.class, () -> conta.sacar(valor));
+
+        assertEquals("O valor deve ser maior que zero.", exception.getMessage());
     }
 
     // =======================================================
     // Testes para sacar
-    // Sugestão de testes:
-    // - Saque com valor maior que saldo lança IllegalStateException
     // - Saque em conta inativa lança IllegalStateException
     // =======================================================
 
