@@ -106,10 +106,19 @@ class ContaTest {
         assertEquals("O valor deve ser maior que zero.", exception.getMessage());
     }
 
-    // =======================================================
-    // Testes para depositar
-    // - Depósito em conta inativa lança IllegalStateException
-    // =======================================================
+    @Test
+    void depositar_ContaInativa_LancaIllegalStateException() {
+        var conta = new Conta("Maria", 0);
+
+        conta.encerrar();
+
+        assertFalse(conta.isAtiva());
+
+        IllegalStateException exception = assertThrows(
+                IllegalStateException.class, () -> conta.depositar(50));
+
+        assertEquals("A conta está inativa.", exception.getMessage());
+    }
 
     @Test
     void sacar_ValorValido_AtualizaSaldoCorretamente() {
