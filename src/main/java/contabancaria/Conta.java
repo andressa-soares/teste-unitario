@@ -76,8 +76,7 @@ public class Conta {
      * - O saldo deve ser atualizado corretamente.
      */
     public void sacar(double valor) {
-        // TODO: Implemente usando TDD
-        throw new UnsupportedOperationException();
+        this.saldo -= valor;
     }
 
     /**
