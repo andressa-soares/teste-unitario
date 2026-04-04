@@ -133,6 +133,13 @@ class ContaTest {
         assertEquals("O valor deve ser maior que zero.", exception.getMessage());
     }
 
+    @Test
+    void sacar_SaldoInsuficiente_LancaIllegalStateException() {
+        var conta = new Conta("Maria", 100);
+
+        assertThrows(IllegalStateException.class, () -> conta.sacar(101));
+    }
+
     // =======================================================
     // Testes para sacar
     // - Saque em conta inativa lança IllegalStateException
