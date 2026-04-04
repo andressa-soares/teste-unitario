@@ -106,6 +106,9 @@ public class Conta {
      * - A propriedade ativa deve ser alterada para false.
      */
     public void encerrar() {
+        if (saldo > 0)
+            throw new IllegalStateException("A conta deve estar com saldo zerado para encerramento.");
+
         this.ativa = false;
     }
 }
