@@ -106,7 +106,6 @@ public class Conta {
      * - A propriedade ativa deve ser alterada para false.
      */
     public void encerrar() {
-        // TODO: Implemente usando TDD
-        throw new UnsupportedOperationException();
+        this.ativa = false;
     }
 }
