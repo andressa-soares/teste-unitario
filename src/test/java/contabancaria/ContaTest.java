@@ -91,6 +91,17 @@ class ContaTest {
         assertEquals(150, conta.getSaldo());
     }
 
+    @ParameterizedTest
+    @CsvSource({
+            "-20",
+            "0"
+    })
+    void depositar_ValorNegativoLancaIllegalArgumentException(double valor) {
+        var conta = new Conta("Maria", 100);
+
+        assertThrows(IllegalArgumentException.class, () -> conta.depositar(valor));
+    }
+
     /**
      * Deposita um valor na conta.
      * Regras:
