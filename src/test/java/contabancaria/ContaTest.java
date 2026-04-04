@@ -184,10 +184,11 @@ class ContaTest {
 
         conta.encerrar();
 
+        assertFalse(conta.isAtiva());
+
         IllegalStateException exception = assertThrows(
                 IllegalStateException.class, () -> conta.encerrar());
 
         assertEquals("A conta já foi encerrada.", exception.getMessage());
-        assertFalse(conta.isAtiva());
     }
 }

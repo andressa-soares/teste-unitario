@@ -1,5 +1,7 @@
 package contabancaria;
 
+import java.nio.channels.IllegalSelectorException;
+
 /**
  * Classe Conta Bancária — laboratório de Testes Unitários e TDD.
  *
@@ -108,6 +110,8 @@ public class Conta {
     public void encerrar() {
         if (saldo > 0)
             throw new IllegalStateException("A conta deve estar com saldo zerado para encerramento.");
+        if (this.ativa == false)
+            throw new IllegalStateException("A conta já foi encerrada.");
 
         this.ativa = false;
     }
