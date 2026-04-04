@@ -167,6 +167,17 @@ class ContaTest {
         assertEquals("A conta está inativa.", exception.getMessage());
     }
 
+    @Test
+    void transferir_RegrasValidas_AtualizaSaldosCorretamente() {
+        var conta1 = new Conta("Maria", 100);
+        var conta2 = new Conta("José", 60);
+
+        conta2.transferir(conta1, 50);
+
+        assertEquals(150, conta1.getSaldo());
+        assertEquals(10, conta2.getSaldo());
+    }
+
     // =======================================================
     // Testes para transferir
     // Sugestão de testes:
