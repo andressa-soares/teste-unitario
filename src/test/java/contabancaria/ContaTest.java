@@ -105,29 +105,19 @@ class ContaTest {
         assertEquals("O valor deve ser maior que zero.", exception.getMessage());
     }
 
-    /**
-     * Deposita um valor na conta.
-     * Regras:
-     * - Valor deve ser maior que zero (lançar IllegalArgumentException).
-     * - Conta deve estar ativa (lançar IllegalStateException).
-     * - O saldo deve ser atualizado corretamente.
-     */
-
-    // =======================================================
-    // PARTE 2 — ESCREVA OS TESTES ABAIXO (TDD)
-    // Lembre-se: escreva o teste PRIMEIRO, veja FALHAR (Red),
-    // depois implemente o código para PASSAR (Green),
-    // e por fim faça Refactor se necessário.
-    // =======================================================
-
     // =======================================================
     // Testes para depositar
-    // Sugestão de testes:
-    // - Depósito com valor válido atualiza o saldo
-    // - Depósito com valor zero lança IllegalArgumentException
-    // - Depósito com valor negativo lança IllegalArgumentException
     // - Depósito em conta inativa lança IllegalStateException
     // =======================================================
+
+    @Test
+    void sacar_ValorValido_AtualizaSaldoCorretamente() {
+        var conta = new Conta("Maria", 100);
+
+        conta.sacar(50);
+
+        assertEquals(50, conta.getSaldo());
+    }
 
     // =======================================================
     // Testes para sacar
