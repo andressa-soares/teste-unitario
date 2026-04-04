@@ -168,10 +168,18 @@ class ContaTest {
         assertFalse(conta.isAtiva());
     }
 
+    @Test
+    void encerrar_ContaComSaldo_LancaIllegalStateException() {
+        var conta = new Conta("Maria", 100);
+
+        IllegalStateException exception = assertThrows(
+                IllegalStateException.class, () -> conta.encerrar());
+
+        assertEquals("A conta deve estar com saldo zerado para encerramento.", exception.getMessage());
+    }
+
     // =======================================================
     // Testes para encerrar
-    // Sugestão de testes:
-    // - Encerrar conta com saldo zero funciona
     // - Encerrar conta já inativa lança IllegalStateException
     // - Conta encerrada tem isAtiva() == false
     // =======================================================
