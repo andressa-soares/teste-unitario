@@ -178,11 +178,19 @@ class ContaTest {
         assertEquals(10, conta2.getSaldo());
     }
 
+    @Test
+    void transferir_SaldoInsuficiente_LancaIllegalStateException() {
+        var conta1 = new Conta("Maria", 100);
+        var conta2 = new Conta("José", 60);
+
+        IllegalStateException exception = assertThrows(
+                IllegalStateException.class, () -> conta2.transferir(conta1, 70));
+
+        assertEquals("Saldo insuficiente para transferência.", exception.getMessage());
+    }
+
     // =======================================================
     // Testes para transferir
-    // Sugestão de testes:
-    // - Transferência válida atualiza saldo de ambas as contas
-    // - Transferência com saldo insuficiente lança exceção
     // - Transferência com valor zero/negativo lança exceção
     // - Transferência com conta origem inativa lança exceção
     // - Transferência com conta destino inativa lança exceção
