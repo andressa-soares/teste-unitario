@@ -99,6 +99,10 @@ public class Conta {
      * - O saldo de ambas as contas deve ser atualizado corretamente.
      */
     public void transferir(Conta destino, double valor) {
+        if (this.ativa == false)
+            throw new IllegalStateException("A conta origem está inativa.");
+        if (destino.ativa == false)
+            throw new IllegalStateException("A conta destino está inativa.");
         if (this.saldo < valor)
             throw new IllegalStateException("Saldo insuficiente para transferência.");
         if (valor <= 0)

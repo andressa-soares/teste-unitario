@@ -207,21 +207,21 @@ class ContaTest {
     @Test
     void transferir_ContaOrigemInativa_LancaIllegalStateException() {
         var conta1 = new Conta("Maria", 100);
-        var conta2 = new Conta("José", 60);
+        var conta2 = new Conta("José", 0);
 
         conta2.encerrar();
 
-        assertFalse(conta1.isAtiva());
+        assertFalse(conta2.isAtiva());
 
         IllegalStateException exception = assertThrows(
-                IllegalStateException.class, () -> conta2.transferir(conta2, 10));
+                IllegalStateException.class, () -> conta2.transferir(conta1, 10));
 
         assertEquals("A conta origem está inativa.", exception.getMessage());
     }
 
     @Test
     void transferir_ContaDestinoInativa_LancaIllegalStateException() {
-        var conta1 = new Conta("Maria", 100);
+        var conta1 = new Conta("Maria", 0);
         var conta2 = new Conta("José", 60);
 
         conta1.encerrar();
