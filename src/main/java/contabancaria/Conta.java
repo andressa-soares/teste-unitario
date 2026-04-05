@@ -36,19 +36,20 @@ public class Conta {
     }
 
     public void depositar(double valor) {
-        if (valor <= 0)
-            throw new IllegalArgumentException("O valor deve ser maior que zero.");
-        if (this.ativa == false)
+        if (!isAtiva())
             throw new IllegalStateException("A conta está inativa.");
+
+        isSaldoValid(valor);
 
         this.saldo += valor;
     }
 
     public void sacar(double valor) {
-        if (this.ativa == false)
+        if (!isAtiva())
             throw new IllegalStateException("A conta está inativa.");
-        if (valor <= 0)
-            throw new IllegalArgumentException("O valor deve ser maior que zero.");
+
+        isSaldoValid(valor);
+
         if (valor > this.saldo)
             throw new IllegalStateException("Saldo insuficiente para o saque.");
 
@@ -56,25 +57,31 @@ public class Conta {
     }
 
     public void transferir(Conta destino, double valor) {
-        if (this.ativa == false)
+        if (!isAtiva())
             throw new IllegalStateException("A conta origem está inativa.");
         if (destino.ativa == false)
             throw new IllegalStateException("A conta destino está inativa.");
+
+        isSaldoValid(valor);
+
         if (this.saldo < valor)
             throw new IllegalStateException("Saldo insuficiente para transferência.");
-        if (valor <= 0)
-            throw new IllegalArgumentException("O valor deve ser maior que zero.");
 
         this.saldo -= valor;
         destino.saldo += valor;
     }
 
     public void encerrar() {
+        if (!isAtiva())
+            throw new IllegalStateException("A conta já foi encerrada.");
         if (saldo > 0)
             throw new IllegalStateException("A conta deve estar com saldo zerado para encerramento.");
-        if (this.ativa == false)
-            throw new IllegalStateException("A conta já foi encerrada.");
 
         this.ativa = false;
+    }
+
+    void isSaldoValid(double saldo) {
+        if (saldo <= 0)
+            throw new IllegalArgumentException("O valor deve ser maior que zero.");
     }
 }
