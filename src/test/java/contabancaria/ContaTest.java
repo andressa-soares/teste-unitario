@@ -189,9 +189,23 @@ class ContaTest {
         assertEquals("Saldo insuficiente para transferência.", exception.getMessage());
     }
 
+    @ParameterizedTest
+    @CsvSource({
+            "-20",
+            "0"
+    })
+    void transferir_ValoresInvalidos_LancaIllegalArgumentException(double valor) {
+        var conta1 = new Conta("Maria", 100);
+        var conta2 = new Conta("José", 60);
+
+        IllegalArgumentException exception = assertThrows(
+                IllegalArgumentException.class, () -> conta2.transferir(conta1, valor));
+
+        assertEquals("O valor deve ser maior que zero.", exception.getMessage());
+    }
+
     // =======================================================
     // Testes para transferir
-    // - Transferência com valor zero/negativo lança exceção
     // - Transferência com conta origem inativa lança exceção
     // - Transferência com conta destino inativa lança exceção
     // =======================================================
