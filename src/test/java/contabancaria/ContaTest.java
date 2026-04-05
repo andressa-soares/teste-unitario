@@ -8,33 +8,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-/**
- * Testes unitários para a classe Conta.
- *
- * PARTE 1 — Testes de exemplo (Construtor) já estão prontos.
- * Observe o padrão AAA e o uso de @Test e @ParameterizedTest.
- *
- * PARTE 2 — Você deve escrever os testes para os demais métodos
- * seguindo rigorosamente o ciclo TDD: Red → Green → Refactor.
- *
- * Para cada método da classe Conta, crie testes que cubram:
- * ✅ O cenário de sucesso (caminho feliz)
- * ❌ Cada regra de validação (cenários de exceção)
- * 🔄 Casos de borda (valores limites)
- */
 class ContaTest {
-
-    // =======================================================
-    // PARTE 1 — EXEMPLO GUIADO: Testes do Construtor
-    // Observe o padrão Arrange-Act-Assert (AAA)
-    // =======================================================
 
     @Test
     void construtor_DadosValidos_CriaContaCorretamente() {
-        // Arrange & Act
         var conta = new Conta("Maria", 100);
 
-        // Assert
         assertEquals("Maria", conta.getTitular());
         assertEquals(100, conta.getSaldo());
         assertTrue(conta.isAtiva());
@@ -42,10 +21,8 @@ class ContaTest {
 
     @Test
     void construtor_SemSaldoInicial_CriaContaComSaldoZero() {
-        // Arrange & Act
         var conta = new Conta("João");
 
-        // Assert
         assertEquals("João", conta.getTitular());
         assertEquals(0, conta.getSaldo());
         assertTrue(conta.isAtiva());
@@ -53,7 +30,6 @@ class ContaTest {
 
     @Test
     void construtor_TitularNulo_LancaIllegalArgumentException() {
-        // Assert — verifica que a exceção é lançada
         assertThrows(IllegalArgumentException.class, () -> new Conta(null));
     }
 

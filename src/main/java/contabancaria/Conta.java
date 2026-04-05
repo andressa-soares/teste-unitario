@@ -2,16 +2,6 @@ package contabancaria;
 
 import java.nio.channels.IllegalSelectorException;
 
-/**
- * Classe Conta Bancária — laboratório de Testes Unitários e TDD.
- *
- * INSTRUÇÕES:
- * 1. Leia os requisitos de cada método (javadoc + regras).
- * 2. Escreva os testes PRIMEIRO no arquivo ContaTest.java.
- * 3. Execute os testes e veja-os FALHAR (Red).
- * 4. Implemente o código mínimo para os testes PASSAREM (Green).
- * 5. Refatore se necessário (Refactor).
- */
 public class Conta {
 
     private String titular;
@@ -30,13 +20,6 @@ public class Conta {
         return ativa;
     }
 
-    /**
-     * Cria uma conta bancária com saldo inicial.
-     * Regras:
-     * - O titular não pode ser nulo ou vazio (lançar IllegalArgumentException).
-     * - O saldo inicial não pode ser negativo (lançar IllegalArgumentException).
-     * - A conta deve ser criada como ativa.
-     */
     public Conta(String titular, double saldoInicial) {
         if (titular == null || titular.isBlank())
             throw new IllegalArgumentException("O titular não pode ser nulo ou vazio.");
@@ -48,20 +31,10 @@ public class Conta {
         this.ativa = true;
     }
 
-    /**
-     * Cria uma conta bancária com saldo zero.
-     */
     public Conta(String titular) {
         this(titular, 0);
     }
 
-    /**
-     * Deposita um valor na conta.
-     * Regras:
-     * - Valor deve ser maior que zero (lançar IllegalArgumentException).
-     * - Conta deve estar ativa (lançar IllegalStateException).
-     * - O saldo deve ser atualizado corretamente.
-     */
     public void depositar(double valor) {
         if (valor <= 0)
             throw new IllegalArgumentException("O valor deve ser maior que zero.");
@@ -71,14 +44,6 @@ public class Conta {
         this.saldo += valor;
     }
 
-    /**
-     * Saca um valor da conta.
-     * Regras:
-     * - Valor deve ser maior que zero (lançar IllegalArgumentException).
-     * - Conta deve estar ativa (lançar IllegalStateException).
-     * - Não pode sacar mais do que o saldo (lançar IllegalStateException).
-     * - O saldo deve ser atualizado corretamente.
-     */
     public void sacar(double valor) {
         if (this.ativa == false)
             throw new IllegalStateException("A conta está inativa.");
@@ -90,14 +55,6 @@ public class Conta {
         this.saldo -= valor;
     }
 
-    /**
-     * Transfere valor desta conta para outra.
-     * Regras:
-     * - As duas contas devem estar ativas (lançar IllegalStateException).
-     * - Valor deve ser maior que zero (lançar IllegalArgumentException).
-     * - Saldo deve ser suficiente (lançar IllegalStateException).
-     * - O saldo de ambas as contas deve ser atualizado corretamente.
-     */
     public void transferir(Conta destino, double valor) {
         if (this.ativa == false)
             throw new IllegalStateException("A conta origem está inativa.");
@@ -112,14 +69,6 @@ public class Conta {
         destino.saldo += valor;
     }
 
-    /**
-     * Encerra a conta.
-     * Regras:
-     * - A conta já deve estar ativa (lançar IllegalStateException se já inativa).
-     * - O saldo deve ser zero para encerrar (lançar IllegalStateException se houver
-     * saldo).
-     * - A propriedade ativa deve ser alterada para false.
-     */
     public void encerrar() {
         if (saldo > 0)
             throw new IllegalStateException("A conta deve estar com saldo zerado para encerramento.");
